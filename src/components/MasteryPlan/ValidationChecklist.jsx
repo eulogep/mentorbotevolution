@@ -1,3 +1,11 @@
+/**
+ * ValidationChecklist Component
+ * 
+ * @author EULOGE MABIALA
+ * @description Liste de validation pour les plans d'apprentissage
+ * @version 2.0.0
+ */
+
 import React, { useState } from 'react';
 import { CheckCircle2, Circle, Star, Trophy, Brain, Target, MessageSquare, Users } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';

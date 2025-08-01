@@ -91,7 +91,9 @@ Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
 ## 👨‍💻 Auteur
 
-**Euloge** - [GitHub](https://github.com/eulogep)
+**EULOGE MABIALA** - [GitHub](https://github.com/eulogep)
+
+*Développeur Full-Stack passionné par l'IA et les neurosciences appliquées à l'éducation*
 
 ---
 

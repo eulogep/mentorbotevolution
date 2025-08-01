@@ -1,3 +1,11 @@
+/**
+ * PlanGenerator Component
+ * 
+ * @author EULOGE MABIALA
+ * @description Générateur de plans d'apprentissage personnalisés basé sur l'IA
+ * @version 2.0.0
+ */
+
 import React, { useState } from 'react';
 import { Target, Brain, Calendar, BookOpen, Zap, CheckCircle2, ArrowRight } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';

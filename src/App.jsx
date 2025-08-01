@@ -1,3 +1,12 @@
+/**
+ * Euloge Learning Platform - Plateforme d'Apprentissage IA
+ * 
+ * @author EULOGE MABIALA
+ * @description Plateforme d'apprentissage moderne basée sur l'IA et les neurosciences
+ * @version 2.0.0
+ * @license MIT
+ */
+
 import React, { useState, useEffect } from 'react';
 import { Brain, Target, Users, Zap, BookOpen, BarChart3, Calendar, Settings, Sparkles, TrendingUp, Clock, Award } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './components/ui/card.jsx';
@@ -610,6 +619,31 @@ function App() {
           </div>
         </div>
       </div>
+      
+      {/* Footer avec attribution */}
+      <footer className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-6 mt-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-4 md:mb-0">
+              <h3 className="text-lg font-bold mb-2">Euloge Learning Platform</h3>
+              <p className="text-gray-300 text-sm">
+                Plateforme d'apprentissage moderne basée sur l'IA et les neurosciences
+              </p>
+            </div>
+            <div className="text-center md:text-right">
+              <p className="text-sm text-gray-300 mb-1">
+                Développé avec ❤️ par
+              </p>
+              <p className="text-lg font-bold text-blue-400">
+                EULOGE MABIALA
+              </p>
+              <p className="text-xs text-gray-400 mt-1">
+                © 2024 - Tous droits réservés
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

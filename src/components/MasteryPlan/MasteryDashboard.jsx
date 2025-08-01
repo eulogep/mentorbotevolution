@@ -1,3 +1,11 @@
+/**
+ * MasteryDashboard Component
+ * 
+ * @author EULOGE MABIALA
+ * @description Dashboard principal pour la gestion des plans de maîtrise
+ * @version 2.0.0
+ */
+
 import React, { useState, useEffect } from 'react';
 import { 
   Upload, 

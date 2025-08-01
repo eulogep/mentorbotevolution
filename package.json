@@ -2,6 +2,8 @@
   "name": "euloge-learning-platform",
   "private": true,
   "version": "0.0.0",
+  "author": "EULOGE MABIALA <euloge.mabiala@example.com>",
+  "description": "Plateforme d'apprentissage moderne basée sur l'IA et les neurosciences pour optimiser la préparation au TOEIC",
   "type": "module",
   "homepage": "https://eulogep.github.io/mentorbotevolution",
   "scripts": {

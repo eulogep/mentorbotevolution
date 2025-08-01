@@ -1,3 +1,16 @@
+"""
+Euloge Learning Platform - Backend API
+=====================================
+
+@author: EULOGE MABIALA
+@description: Serveur Flask pour la plateforme d'apprentissage IA
+@version: 2.0.0
+@license: MIT
+
+Ce serveur fournit les API nécessaires pour la plateforme d'apprentissage
+basée sur l'IA et les neurosciences pour optimiser la préparation au TOEIC.
+"""
+
 import os
 import sys
 # DON'T CHANGE THIS !!!

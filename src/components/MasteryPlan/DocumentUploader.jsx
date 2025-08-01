@@ -1,3 +1,11 @@
+/**
+ * DocumentUploader Component
+ * 
+ * @author EULOGE MABIALA
+ * @description Composant pour l'upload et l'analyse de documents d'apprentissage
+ * @version 2.0.0
+ */
+
 import React, { useState, useCallback } from 'react';
 import { Upload, FileText, Image, File, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
