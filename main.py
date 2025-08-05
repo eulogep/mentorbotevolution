@@ -22,6 +22,8 @@ from src.models.user import db
 from src.routes.user import user_bp
 from src.routes.learning import learning_bp
 from src.routes.mastery import mastery_bp
+from src.routes.analysis import analysis_bp
+from src.routes.spaced_repetition import spaced_repetition_bp
 
 app = Flask(__name__, static_folder=os.path.join(os.path.dirname(__file__), 'static'))
 app.config['SECRET_KEY'] = 'asdf#FGSgvasgf$5$WGT'
@@ -29,9 +31,14 @@ app.config['SECRET_KEY'] = 'asdf#FGSgvasgf$5$WGT'
 # Configuration CORS pour permettre les requêtes cross-origin
 CORS(app)
 
+# Enregistrement des blueprints existants
 app.register_blueprint(user_bp, url_prefix='/api/user')
 app.register_blueprint(learning_bp, url_prefix='/api/learning')
 app.register_blueprint(mastery_bp, url_prefix='/api/mastery')
+
+# Enregistrement des nouveaux blueprints v2.0
+app.register_blueprint(analysis_bp, url_prefix='/api/analysis')
+app.register_blueprint(spaced_repetition_bp, url_prefix='/api/spaced-repetition')
 
 # uncomment if you need to use database
 app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(os.path.dirname(__file__), 'database', 'app.db')}"
