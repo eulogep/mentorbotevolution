@@ -1,5 +1,11 @@
 {
   "name": "euloge-learning-platform",
+  "project": {
+    "name": "Euloge Learning Platform",
+    "author": "MABIALA EULOGE",
+    "description": "Plateforme d'apprentissage moderne basée sur l'IA et les neurosciences",
+    "repository": "https://github.com/eulogep/mentorbotevolution"
+  },
   "version": 2,
   "builds": [
     {

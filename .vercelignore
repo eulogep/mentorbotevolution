@@ -1,0 +1,36 @@
+# Fichiers et dossiers à ignorer lors du déploiement Vercel
+# Auteur: MABIALA EULOGE
+
+# Dépendances
+node_modules
+__pycache__
+*.pyc
+.env
+.env.*
+
+# Fichiers de développement
+.git
+.gitignore
+*.log
+.DS_Store
+
+# Documentation et fichiers markdown (sauf README.md et VERCEL.md)
+*.md
+!README.md
+!VERCEL.md
+
+# Fichiers de test
+tests/
+*.test.js
+*.spec.js
+
+# Fichiers de build temporaires
+.vercel/output/
+dist/
+build/
+
+# Fichiers d'IDE
+.vscode/
+.idea/
+*.swp
+*.swo
