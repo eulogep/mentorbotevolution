@@ -1,0 +1,36 @@
+{
+  "name": "euloge-learning-platform",
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    },
+    {
+      "src": "main.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "main.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/"
+    }
+  ],
+  "env": {
+    "PYTHON_VERSION": "3.11"
+  },
+  "build": {
+    "env": {
+      "AUTHOR": "MABIALA EULOGE",
+      "PROJECT_DESCRIPTION": "Plateforme d'apprentissage moderne basée sur l'IA et les neurosciences"
+    }
+  }
+}

@@ -11,7 +11,8 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist",
+    "vercel-build": "vite build"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.7",
