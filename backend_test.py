@@ -413,7 +413,7 @@ class BackendTester:
 def main():
     """Main test runner"""
     print("Backend API Testing Suite")
-    print("Base URL: http://localhost")
+    print("Base URL: http://localhost:8001")
     print()
     
     tester = BackendTester()
