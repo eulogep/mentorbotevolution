@@ -40,8 +40,10 @@ app.register_blueprint(mastery_bp, url_prefix='/api/mastery')
 app.register_blueprint(analysis_bp, url_prefix='/api/analysis')
 app.register_blueprint(spaced_repetition_bp, url_prefix='/api/spaced-repetition')
 
-# uncomment if you need to use database
-app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(os.path.dirname(__file__), 'database', 'app.db')}"
+# Configuration base de données SQLite (création du dossier si nécessaire)
+db_dir = os.path.join(os.path.dirname(__file__), 'database')
+os.makedirs(db_dir, exist_ok=True)
+app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(db_dir, 'app.db')}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 with app.app_context():
