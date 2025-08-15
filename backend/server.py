@@ -30,5 +30,7 @@ app.add_middleware(
 async def health():
     return {"status": "healthy", "service": "fastapi-gateway", "version": "2.0.0"}
 
-# Mount Flask app under /api/app so SPA is accessible at /api/app/
-app.mount("/api/app", WSGIMiddleware(flask_app))
+# Mount Flask app at root so that:
+# - SPA is served at /
+# - All Flask blueprints already start with /api and therefore match ingress expectations
+app.mount("/", WSGIMiddleware(flask_app))
