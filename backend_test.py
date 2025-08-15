@@ -25,7 +25,7 @@ import uuid
 import time
 
 class BackendTester:
-    def __init__(self, base_url: str = "http://localhost"):
+    def __init__(self, base_url: str = "http://localhost:8001"):
         self.base_url = base_url
         self.session = requests.Session()
         self.test_results = []
