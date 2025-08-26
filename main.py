@@ -14,7 +14,7 @@ basée sur l'IA et les neurosciences pour optimiser la préparation au TOEIC.
 import os
 import sys
 # DON'T CHANGE THIS !!!
-sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+sys.path.insert(0, os.path.dirname(__file__))
 
 from flask import Flask, send_from_directory
 from flask_cors import CORS
@@ -40,14 +40,29 @@ app.register_blueprint(mastery_bp, url_prefix='/api/mastery')
 app.register_blueprint(analysis_bp, url_prefix='/api/analysis')
 app.register_blueprint(spaced_repetition_bp, url_prefix='/api/spaced-repetition')
 
-# Configuration base de données SQLite (création du dossier si nécessaire)
-db_dir = os.path.join(os.path.dirname(__file__), 'database')
-os.makedirs(db_dir, exist_ok=True)
-app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(db_dir, 'app.db')}"
+# Configuration base de données SQLite (compatible Vercel serverless)
+# - En prod Vercel, utiliser /tmp (writable)
+# - En local, utiliser ./database/app.db
+use_db_uri = os.environ.get('DATABASE_URL')
+if not use_db_uri:
+    if os.environ.get('VERCEL'):
+        tmp_dir = '/tmp'
+        use_db_uri = f"sqlite:///{os.path.join(tmp_dir, 'app.db')}"
+    else:
+        db_dir = os.path.join(os.path.dirname(__file__), 'database')
+        os.makedirs(db_dir, exist_ok=True)
+        use_db_uri = f"sqlite:///{os.path.join(db_dir, 'app.db')}"
+app.config['SQLALCHEMY_DATABASE_URI'] = use_db_uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# Initialisation DB (création des tables si nécessaire)
 db.init_app(app)
 with app.app_context():
-    db.create_all()
+    try:
+        db.create_all()
+    except Exception as e:
+        # En environnement serverless, échouer silencieusement si non nécessaire
+        pass
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')

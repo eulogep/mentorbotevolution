@@ -16,6 +16,32 @@ import { Badge } from './components/ui/badge.jsx';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs.jsx';
 import MasteryDashboard from './components/MasteryPlan/MasteryDashboard.jsx';
 
+// UI polish inspired by reactbits.dev: animated number counter
+function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+function useAnimatedNumber(value, duration = 800) {
+  const [display, setDisplay] = useState(value);
+  const prevRef = React.useRef(value);
+  useEffect(() => {
+    const start = performance.now();
+    const startVal = prevRef.current;
+    const delta = value - startVal;
+    let raf;
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / duration);
+      setDisplay(Math.round(startVal + delta * easeOutCubic(t)));
+      if (t < 1) raf = requestAnimationFrame(tick); else prevRef.current = value;
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [value, duration]);
+  return display;
+}
+
+const AnimatedStat = ({ value, suffix = '' }) => {
+  const v = useAnimatedNumber(value);
+  return <span>{v}{suffix}</span>;
+};
+
 function App() {
   const [activeModule, setActiveModule] = useState('mastery');
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -479,7 +505,7 @@ function App() {
             <div className="flex items-center gap-4">
               <div className="text-right">
                 <div className="text-sm font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  Score actuel: {progressData.currentScore}
+                  Score actuel: <AnimatedStat value={progressData.currentScore} />
                 </div>
                 <div className="text-xs text-gray-500">Objectif: {progressData.targetScore}</div>
               </div>
@@ -568,14 +594,16 @@ function App() {
                   {/* Stats rapides */}
                   <div className="grid grid-cols-2 gap-3 pt-2">
                     {[
-                      { label: "Matières actives", value: "2", icon: BookOpen },
-                      { label: "Progression globale", value: `${progressData.weeklyProgress}%`, icon: TrendingUp },
-                      { label: "Temps cette semaine", value: `${progressData.totalHours}h`, icon: Clock },
-                      { label: "Streak moyen", value: `${progressData.averageStreak} jours`, icon: Award }
+                      { label: "Matières actives", value: 2, suffix: '', icon: BookOpen },
+                      { label: "Progression globale", value: progressData.weeklyProgress, suffix: '%', icon: TrendingUp },
+                      { label: "Temps cette semaine", value: progressData.totalHours, suffix: 'h', icon: Clock },
+                      { label: "Streak moyen", value: progressData.averageStreak, suffix: ' jours', icon: Award }
                     ].map((stat, index) => (
-                      <div key={index} className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-3 text-center">
-                        <stat.icon className="h-4 w-4 mx-auto mb-1 text-gray-600" />
-                        <div className="text-lg font-bold text-gray-800">{stat.value}</div>
+                      <div key={index} className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-3 text-center group hover:shadow-md transition-all">
+                        <stat.icon className="h-4 w-4 mx-auto mb-1 text-gray-600 group-hover:scale-110 transition-transform" />
+                        <div className="text-lg font-bold text-gray-800">
+                          <AnimatedStat value={stat.value} suffix={stat.suffix} />
+                        </div>
                         <div className="text-xs text-gray-500">{stat.label}</div>
                       </div>
                     ))}
